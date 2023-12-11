@@ -161,19 +161,3 @@ let exampPerson = ExamplePerson(id: "2")
 print(exampPerson.identify()) // My social security number is 2
 // exampPerson.id = 3 // return error: 'id' is inaccessible due to 'private' protection level
 
-
-// ----------------
-
-
-struct App {
-    var name: String
-    private var sales = 0
-    init(name: String) {
-        self.name = name
-    }
-}
-let spotify = App(name: "Spotify")
-
-
-
-
