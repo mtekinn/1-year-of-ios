@@ -224,9 +224,3 @@ class Singer {
 let eminem = Singer()
 // eminem.name = "David Gilmour" // Cannot assign to property: 'name' is a 'let' constant
 print(eminem.name) // Eminem
-
-
-// 
-func writeReview(for book: String) {
-    print("\(book) was a great book!")
-}
