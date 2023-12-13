@@ -121,3 +121,112 @@ class Tesla: Car {
 let tesla = Tesla()
 tesla.cars() // Tesla needs electricity to go!
 
+
+// Final classes **
+
+// When you declare a class as being final, no other class can inherit from it
+// Marking class as final also tells Swift compiler that method should be called directly (static dispatch) rather than looking up a function from a method table (dynamic dispatch)*******
+
+final class Student {
+    var id: Int
+    var firstName: String
+    var lastName: String
+    
+    init(id: Int, firstName: String, lastName: String) {
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+    }
+}
+
+let student = Student(id: 12345, firstName: "Mehmet", lastName: "Tekin")
+
+/*
+class TestFinalStudent: Student { // returns Inheritance from a final class 'Student'
+    init() {
+        super.init(id: 0, firstName: "TestFirstName", lastName: "TestLastName")
+    }
+}
+*/
+
+
+// Copying objects
+
+class ProgrammingLanguage {
+    var lang: String
+    
+    init(lang: String) {
+        self.lang = lang
+    }
+}
+
+var language = ProgrammingLanguage(lang: "Java")
+print(language.lang) // Java
+
+var copyLang = language
+copyLang.lang = "Swift"
+
+print(copyLang.lang) // Swift
+
+
+
+// Deinitializers
+
+
+class Product {
+    var name = "House"
+    
+    init() {
+        print("\(name) can be used.")
+    }
+    
+    func everythingGood() {
+        print("Everything is ok for \(name)")
+    }
+    
+    deinit {
+        print("\(name) was destroyed")
+    }
+}
+
+for _ in 0...1 {
+    let product = Product()
+    product.everythingGood()
+}
+
+/*
+ House can be used.
+ Everything is ok for House
+ House was destroyed
+ House can be used.
+ Everything is ok for House
+ House was destroyed
+ */
+
+
+
+// Mutability
+// Class is explicit about mutable items.
+
+class Player {
+    var name = "Messi"
+}
+
+let player = Player()
+player.name = "Ronaldo"
+print(player.name) // Ronaldo
+
+
+class Singer {
+    let name = "Eminem"
+}
+
+let eminem = Singer()
+// eminem.name = "David Gilmour" // Cannot assign to property: 'name' is a 'let' constant
+print(eminem.name) // Eminem
+
+
+// 
+func writeReview(for book: String) {
+    print("\(book) was a great book!")
+}
