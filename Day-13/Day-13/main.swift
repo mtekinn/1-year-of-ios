@@ -275,9 +275,3 @@ case 81...100:
 default:
     print("Invalid grade")
 }
-
-
-let capitals = ["England": "London", "Wales": "Cardiff"]
-let scotlandCapital = capitals["Scotland"]
-
-print(scotlandCapital)
