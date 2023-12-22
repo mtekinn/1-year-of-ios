@@ -16,6 +16,10 @@ class ViewController: UIViewController {
     var countries = [String]()
     var correctAnswer = 0
     var score = 0
+    var questionCounter = 0
+    var wrongAnswerCounter = 0
+    var trueAnswerCounter = 0
+    var isGameContinue = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,7 @@ class ViewController: UIViewController {
         button3.layer.borderColor = UIColor.lightGray.cgColor
         
         askQuestion(action: nil)
+        
     }
     
     func askQuestion(action: UIAlertAction!) {
@@ -40,24 +45,43 @@ class ViewController: UIViewController {
         
         correctAnswer = Int.random(in: 0...2)
         title = countries[correctAnswer].uppercased()
+        
+        let scoreView = UILabel()
+        scoreView.text = "Score: \(score)"
+        let scoreButton = UIBarButtonItem(customView: scoreView)
+        navigationItem.rightBarButtonItem = scoreButton
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         
         var title: String
-        
+        questionCounter += 1
         if sender.tag == correctAnswer {
-            
             title = "Correct"
             score += 1
+            trueAnswerCounter += 1
         } else {
             title = "Wrong"
             score -= 1
+            wrongAnswerCounter += 1
+            let alertForWrongMsg = UIAlertController(title: title, message: "Wrong! That’s the flag of \(countries[sender.tag])", preferredStyle: .alert)
+            alertForWrongMsg.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: askQuestion))
+            self.present(alertForWrongMsg, animated: true)
         }
-        print(correctAnswer)
-        let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        present(ac, animated: true)
+        
+        if questionCounter == 10 {
+            let tenQuestionAlert = UIAlertController(title: title, message: "Your answered \(questionCounter) questions. You have \(trueAnswerCounter) true answer and \(wrongAnswerCounter) wrong answer.", preferredStyle: .alert)
+            tenQuestionAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
 
+            present(tenQuestionAlert, animated: true)
+            questionCounter = 0
+            trueAnswerCounter = 0
+            wrongAnswerCounter = 0
+            score = 0
+        } else {
+            let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+            present(ac, animated: true)
+        }
     }
 }
