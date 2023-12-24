@@ -34,6 +34,9 @@ class ViewController: UIViewController {
         
         askQuestion(action: nil)
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showPoint))
+
+        
     }
     
     func askQuestion(action: UIAlertAction!) {
@@ -83,5 +86,13 @@ class ViewController: UIViewController {
             ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
             present(ac, animated: true)
         }
+    }
+    
+    @objc func showPoint() {
+        let message = "Score is \(score)"
+        
+        let vc = UIAlertController(title: "Score", message: message, preferredStyle: .alert)
+          vc.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+          present(vc,animated: true)
     }
 }
