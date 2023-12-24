@@ -25,6 +25,9 @@ class DetailViewController: UIViewController {
             imageView.image = UIImage(named: imageToLoad)
         }
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareApp))
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +38,16 @@ class DetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
+    }
+    
+    @objc func shareApp() {
+        
+        let shareMessage = "This is share message."
+        let link = "https://github.com/mtekinn"
+        
+        let vc = UIActivityViewController(activityItems: [shareMessage, link], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
     
 }
