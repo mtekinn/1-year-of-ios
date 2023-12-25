@@ -1,17 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "DALL·E 2023-12-25 00.12.44 - an ios app icon, about flags.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "DALL·E 2023-12-25 00.12.44 - an ios app icon, about flags@2x.png",
+      "filename" : "nigeria@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "DALL·E 2023-12-25 00.12.44 - an ios app icon, about flags@3x.png",
+      "filename" : "nigeria@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
