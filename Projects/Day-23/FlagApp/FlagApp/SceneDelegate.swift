@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  FlagApp
 //
-//  Created by Mehmet Tekin on 24.12.2023.
+//  Created by Mehmet Tekin on 25.12.2023.
 //
 
 import UIKit
