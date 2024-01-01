@@ -18,6 +18,9 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQp-ZW-cDq">
                                 <rect key="frame" x="107" y="100" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="iQp-ZW-cDq" secondAttribute="height" multiplier="2:1" id="wN5-24-vAN"/>
+                                </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="us"/>
                                 <connections>
@@ -26,6 +29,9 @@
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ej6-PW-dQ7">
                                 <rect key="frame" x="107" y="230" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ej6-PW-dQ7" secondAttribute="height" multiplier="2:1" id="SED-kt-dGP"/>
+                                </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="us"/>
                                 <connections>
@@ -34,6 +40,9 @@
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kk-Pd-lZD">
                                 <rect key="frame" x="107" y="360" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5kk-Pd-lZD" secondAttribute="height" multiplier="2:1" id="6S7-yq-yYL"/>
+                                </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="us"/>
                                 <connections>
@@ -45,9 +54,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Ej6-PW-dQ7" firstAttribute="top" secondItem="iQp-ZW-cDq" secondAttribute="bottom" constant="30" id="4mi-AC-msx"/>
+                            <constraint firstItem="5kk-Pd-lZD" firstAttribute="height" secondItem="Ej6-PW-dQ7" secondAttribute="height" id="AUR-NT-wtF"/>
                             <constraint firstItem="Ej6-PW-dQ7" firstAttribute="centerX" secondItem="iQp-ZW-cDq" secondAttribute="centerX" id="EbQ-An-oeG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5kk-Pd-lZD" secondAttribute="bottom" constant="20" id="HKD-Jr-gxx"/>
                             <constraint firstItem="5kk-Pd-lZD" firstAttribute="centerX" secondItem="Ej6-PW-dQ7" secondAttribute="centerX" id="LVP-aq-nAG"/>
                             <constraint firstItem="5kk-Pd-lZD" firstAttribute="top" secondItem="Ej6-PW-dQ7" secondAttribute="bottom" constant="30" id="XuZ-Vv-lTf"/>
+                            <constraint firstItem="Ej6-PW-dQ7" firstAttribute="height" secondItem="iQp-ZW-cDq" secondAttribute="height" id="alH-5g-jvQ"/>
                             <constraint firstItem="iQp-ZW-cDq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="gQV-5P-xGR"/>
                             <constraint firstItem="iQp-ZW-cDq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="nMB-S1-v61"/>
                         </constraints>
