@@ -10,22 +10,40 @@ import UIKit
 class ViewController: UITableViewController {
     
     var shoppingList = [String]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Shopping List"
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(clearList))
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .done, target: self, action: #selector(addItem))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .remove, style: .done, target: self, action: #selector(clearList))
-        
-        title = "Shopping List"
     }
     
     @objc func addItem(item: String) {
-        shoppingList.append(item)
+        let ac = UIAlertController(title: "What do you want to add your shop list?", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+        
+        let addAction = UIAlertAction(title: "Add", style: .default) { _ in
+            guard let item = ac.textFields?[0].text else { return }
+            self.add(item)
+            self.tableView.reloadData()
+        }
+        ac.addAction(addAction)
+        present(ac, animated: true)
+    }
+    
+    func add(_ item: String) {
+        if !item.isEmpty {
+            shoppingList.insert(item, at: 0)
+            let indexPath = IndexPath(row: 0, section: 0)
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        }
     }
     
     @objc func clearList() {
-        
+        shoppingList.removeAll(keepingCapacity: true)
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
