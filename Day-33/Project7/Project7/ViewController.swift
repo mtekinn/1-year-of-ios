@@ -14,15 +14,27 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let urlString: String
+        title = "Whitehouse People API"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Credits", style: .plain, target: self, action: #selector(showAlert))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(filterPetitions))
 
+        dataFromURL()
+    }
+    
+    @objc func filterPetitions(input: String) {
+        
+    }
+    
+    func dataFromURL() {
+        let urlString: String
+        
         // "https://www.hackingwithswift.com/samples/petitions-1.json"
         if navigationController?.tabBarItem.tag == 0 {
             urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
         } else {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
-        
         
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
@@ -31,6 +43,12 @@ class ViewController: UITableViewController {
             }
         }
         showError()
+    }
+    
+    @objc func showAlert() {
+        let ac = UIAlertController(title: nil, message: "Data comes from the We The People API of the Whitehouse", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
     func showError() {
