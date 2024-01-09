@@ -8,19 +8,20 @@
 import UIKit
 
 class ViewController: UITableViewController {
-
+    
     var petitions = [Petition]()
     var filteredPetitions = [Petition]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "Whitehouse People API"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Credits", style: .plain, target: self, action: #selector(showAlert))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterPetitions))
+        
+        performSelector(inBackground: #selector(fetchJSON), with: nil)
 
-        dataFromURL()
     }
     
     @objc func filterPetitions() {
@@ -33,36 +34,36 @@ class ViewController: UITableViewController {
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 
                 self?.filteredPetitions = self?.petitions.filter { $0.title.uppercased().contains(searchTerm.uppercased()) || $0.body.uppercased().contains(searchTerm.uppercased())
-                    } ?? []
-                 
+                } ?? []
+                
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
             }
         }))
-                     
+        
         present(ac, animated: true)
     }
     
-    
-    func dataFromURL() {
+    @objc func fetchJSON() {
         let urlString: String
-        
-        // "https://www.hackingwithswift.com/samples/petitions-1.json"
+
         if navigationController?.tabBarItem.tag == 0 {
-            urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+            urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
         } else {
-            urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
+            urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=100"
         }
-        
+
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 parse(json: data)
                 return
             }
         }
-        showError()
+
+        performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
     }
+
     
     @objc func showAlert() {
         let ac = UIAlertController(title: nil, message: "Data comes from the We The People API of the Whitehouse", preferredStyle: .alert)
@@ -70,7 +71,7 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
     }
     
-    func showError() {
+    @objc func showError() {
         let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
@@ -80,10 +81,10 @@ class ViewController: UITableViewController {
         let decoder = JSONDecoder()
 
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
-            self.petitions = jsonPetitions.results
-            self.filteredPetitions = jsonPetitions.results
-            
-            tableView.reloadData()
+            petitions = jsonPetitions.results
+            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+        } else {
+            performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
         }
     }
     
