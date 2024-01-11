@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E12ABFBA2B506CF100F5D73A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12ABFB92B506CF100F5D73A /* Person.swift */; };
 		E1B254062B4EC0670059C5AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B254052B4EC0670059C5AD /* AppDelegate.swift */; };
 		E1B254082B4EC0670059C5AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B254072B4EC0670059C5AD /* SceneDelegate.swift */; };
 		E1B2540A2B4EC0670059C5AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B254092B4EC0670059C5AD /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E12ABFB92B506CF100F5D73A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		E1B254022B4EC0670059C5AD /* Project10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B254052B4EC0670059C5AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1B254072B4EC0670059C5AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				E1B254092B4EC0670059C5AD /* ViewController.swift */,
 				E1B2540B2B4EC0670059C5AD /* Main.storyboard */,
 				E1B254192B4ECED50059C5AD /* PersonCell.swift */,
+				E12ABFB92B506CF100F5D73A /* Person.swift */,
 				E1B2540E2B4EC0680059C5AD /* Assets.xcassets */,
 				E1B254102B4EC0680059C5AD /* LaunchScreen.storyboard */,
 				E1B254132B4EC0680059C5AD /* Info.plist */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E12ABFBA2B506CF100F5D73A /* Person.swift in Sources */,
 				E1B2540A2B4EC0670059C5AD /* ViewController.swift in Sources */,
 				E1B254062B4EC0670059C5AD /* AppDelegate.swift in Sources */,
 				E1B2541A2B4ECED50059C5AD /* PersonCell.swift in Sources */,
