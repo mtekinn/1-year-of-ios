@@ -17,8 +17,19 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         performSelector(inBackground: #selector(loadImages), with: nil)
+        
+        let defaults = UserDefaults.standard
+        
+        defaults.object(forKey: "people")
+        
+        
         tableView.reloadData()
         
+    }
+    
+    func viewCounter() {
+        let defaults = UserDefaults.standard
+        defaults.set(pictures, forKey: "pictures")
     }
     
     @objc func loadImages() {
