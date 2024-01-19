@@ -91,7 +91,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Yya-TK-CGb"/>
                     <connections>
-                        <outlet property="imageView" destination="ddz-lP-353" id="CdL-t9-oa1"/>
+                        <outlet property="imageView" destination="yiI-am-Dag" id="Adv-Yo-KLu"/>
                         <outlet property="intensity" destination="6Rx-Vd-vhU" id="xEQ-SV-2QN"/>
                     </connections>
                 </viewController>
