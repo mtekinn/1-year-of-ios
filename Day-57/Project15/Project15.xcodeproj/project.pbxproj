@@ -13,7 +13,6 @@
 		E19504772B5E845F00236A4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E19504752B5E845F00236A4E /* Main.storyboard */; };
 		E19504792B5E846000236A4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19504782B5E846000236A4E /* Assets.xcassets */; };
 		E195047C2B5E846000236A4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E195047A2B5E846000236A4E /* LaunchScreen.storyboard */; };
-		E19504852B5E849400236A4E /* penguin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E19504842B5E849400236A4E /* penguin@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +24,6 @@
 		E19504782B5E846000236A4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E195047B2B5E846000236A4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E195047D2B5E846000236A4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E19504842B5E849400236A4E /* penguin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "penguin@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,17 +63,8 @@
 				E19504782B5E846000236A4E /* Assets.xcassets */,
 				E195047A2B5E846000236A4E /* LaunchScreen.storyboard */,
 				E195047D2B5E846000236A4E /* Info.plist */,
-				E19504832B5E849400236A4E /* Content */,
 			);
 			path = Project15;
-			sourceTree = "<group>";
-		};
-		E19504832B5E849400236A4E /* Content */ = {
-			isa = PBXGroup;
-			children = (
-				E19504842B5E849400236A4E /* penguin@2x.png */,
-			);
-			path = Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +126,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E195047C2B5E846000236A4E /* LaunchScreen.storyboard in Resources */,
-				E19504852B5E849400236A4E /* penguin@2x.png in Resources */,
 				E19504792B5E846000236A4E /* Assets.xcassets in Resources */,
 				E19504772B5E845F00236A4E /* Main.storyboard in Resources */,
 			);
@@ -310,8 +298,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -338,8 +326,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
