@@ -142,7 +142,13 @@ class ViewController: UIViewController {
         guard let buttonTitle = sender.titleLabel?.text else { return }
         currentAnswer.text = currentAnswer.text?.appending(buttonTitle)
         activatedButtons.append(sender)
-        sender.isHidden = true
+        
+        UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
+            sender.alpha = 0
+        } completion: { finished in
+            sender.alpha = 1
+        }
+    
     }
     
     @objc func submitTapped(_ sender: UIButton) {
@@ -166,6 +172,7 @@ class ViewController: UIViewController {
         } else {
             let ac = UIAlertController(title: "Wrong Anwswer", message: "Try Again", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+            UIView.animate(withDuration: 1, animations: { sender.alpha = 1 })
             present(ac, animated: true)
             score -= 1
         }
@@ -187,6 +194,7 @@ class ViewController: UIViewController {
         
         for btn in activatedButtons {
             btn.isHidden = false
+            UIView.animate(withDuration: 1, animations: { sender.alpha = 1 })
         }
         activatedButtons.removeAll()
     }
