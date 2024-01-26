@@ -7,13 +7,16 @@
 
 import UIKit
 import MapKit
+import WebKit
 
 class ViewController: UIViewController, MKMapViewDelegate {
-
+    
     @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .edit, target: self, action: #selector(changeMapView))
         
         let london = Capital(title: "London", coordinate: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), info: "Home to the 2012 Summer Olympics.")
         let oslo = Capital(title: "Oslo", coordinate: CLLocationCoordinate2D(latitude: 59.95, longitude: 10.75), info: "Founded over a thousand years ago.")
@@ -24,29 +27,51 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         mapView.addAnnotations([london, oslo, paris, rome, washington, ankara])
     }
-
+    
+    @objc func changeMapView() {
+        let ac = UIAlertController(title: "Change map style", message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Standart", style: .default, handler: changeView))
+        ac.addAction(UIAlertAction(title: "Satellite", style: .default, handler: changeView))
+        ac.addAction(UIAlertAction(title: "Hybrid", style: .default, handler: changeView))
+        ac.addAction(UIAlertAction(title: "Hybrid Flyover", style: .default, handler: changeView))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        present(ac, animated: true)
+    }
+    
+    func changeView(action: UIAlertAction! = nil) {
+        guard let actionTitle = action?.title else { return }
+        
+        switch actionTitle{
+        case "Satellite":
+            self.mapView.mapType = .satellite
+        case "Hybrid":
+            self.mapView.mapType = .hybrid
+        case "Hybrid Flyover":
+            self.mapView.mapType = .hybridFlyover
+        default:
+            self.mapView.mapType = .standard
+        }
+    }
+    
     //MARK: - MapView  Methods
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        // 1
         guard annotation is Capital else { return nil }
         
-        // 2
         let identifier = "Capital"
         
-        // 3
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
         
         if annotationView == nil {
-            // 4
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView?.canShowCallout = true
+            let pin = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            pin.canShowCallout = true
+            pin.markerTintColor = UIColor.green
+            annotationView = pin
             
-            // 5
             let btn = UIButton(type: .detailDisclosure)
             annotationView?.rightCalloutAccessoryView = btn
         } else {
-            // 6
             annotationView?.annotation = annotation
         }
         return annotationView
@@ -61,6 +86,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
     }
-
+    
 }
 
