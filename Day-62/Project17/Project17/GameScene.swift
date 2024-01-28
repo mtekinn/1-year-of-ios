@@ -15,10 +15,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let possibleEnemies = ["ball", "hammer", "tv"]
     var isGamerOver = false
     var gameTimer: Timer?
+    var timeInver = 1.0
     
     var score = 0 {
         didSet {
             scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
+    var enemyCount: Int = 0 {
+        didSet {
+            if enemyCount > 40 {
+                self.timeInver = 0.1
+            }
+            else if enemyCount.isMultiple(of: 5) {
+                self.gameTimer?.invalidate()
+                self.timeInver -= 0.1
+                self.gameTimer = Timer.scheduledTimer(timeInterval: timeInver, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
+            }
         }
     }
     
@@ -50,16 +64,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameTimer = Timer.scheduledTimer(timeInterval: 0.35, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        for node in children {
-            if node.position.x < -300 {
-                node.removeFromParent()
-            }
-        }
+    func didBegin(_ contact: SKPhysicsContact) {
+        let explosion = SKEmitterNode(fileNamed: "explosion")!
+        explosion.position = player.position
+        addChild(explosion)
         
-        if !isGamerOver {
-            score += 1
-        }
+        player.removeFromParent()
+        
+        isGamerOver = true
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -75,15 +87,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.position = location
     }
     
-    func didBegin(_ contact: SKPhysicsContact) {
-        let explosion = SKEmitterNode(fileNamed: "explosion")!
-        explosion.position = player.position
-        addChild(explosion)
-        
-        player.removeFromParent()
-        
-        isGamerOver = true
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if !isGamerOver {
+            if self.contains(player) {
+                let explosion = SKEmitterNode(fileNamed: "explosion")!
+                explosion.position = player.position
+                addChild(explosion)
+                
+                player.removeFromParent()
+                isGamerOver = true
+            }
+        }
     }
+    
+    override func update(_ currentTime: TimeInterval) {
+        for node in children {
+            if node.position.x < -300 {
+                node.removeFromParent()
+            }
+        }
+        
+        if !isGamerOver {
+            score += 1
+        }
+    }
+    
+    
+    //MARK: - Methods
     
     @objc func createEnemy() {
         guard let enemy = possibleEnemies.randomElement() else { return }
@@ -98,5 +128,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sprite.physicsBody?.angularVelocity = 5
         sprite.physicsBody?.linearDamping = 0
         sprite.physicsBody?.angularDamping = 0
+        
     }
 }
