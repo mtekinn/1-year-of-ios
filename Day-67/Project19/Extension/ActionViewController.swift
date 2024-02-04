@@ -20,7 +20,17 @@ class ActionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var userScripts = Dictionary<String, String>()
+        
+        let defaults = UserDefaults.standard
+        
+        let leftButton1 = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(selectCode))
+        let leftButton2 = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCode))
+
+        navigationItem.leftBarButtonItems = [leftButton1, leftButton2]
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(selectCode))
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -39,6 +49,52 @@ class ActionViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+    
+    @objc func addCode(){
+        let ac = UIAlertController(title: "Add Your Code", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        ac.addAction(UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] _ in
+            guard let newName = ac?.textFields?[0].text else { return }
+            var alertTitle = ""
+            guard let scriptText = self?.script.text else { return }
+            if self?.pageTitle != ""{
+                self?.userScripts[newName] = scriptText
+                self?.defaults.set(self?.userScripts, forKey: self!.pageTitle)
+                alertTitle = "Save Completed"
+            }else{
+                alertTitle = "Save failed"
+            }
+            let sac = UIAlertController(title: alertTitle, message: nil, preferredStyle: .alert)
+            sac.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self?.present(sac,animated: true)
+        })
+
+        present(ac, animated: true)
+    }
+    
+    @objc func selectCode() {
+        let ac = UIAlertController(title: "Select Any Code", message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Alert example 1", style: .default, handler: selectCodeAction))
+        ac.addAction(UIAlertAction(title: "Alert example 2", style: .default, handler: selectCodeAction))
+
+        present(ac, animated: true)
+    }
+    
+    func selectCodeAction(action: UIAlertAction? = nil) {
+        guard let title = action?.title else { return }
+        
+        if title == "Alert Template" {
+            self.script.text = "alert();"
+        } else {
+            self.script.text = """
+            alert("This this test example");
+            alert();
+            """
         }
     }
 
