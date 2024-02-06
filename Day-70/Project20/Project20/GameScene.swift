@@ -11,6 +11,8 @@ class GameScene: SKScene {
     
     var gameTimer: Timer?
     var fireworks = [SKNode]()
+    var scoreLabel: SKLabelNode!
+    var showDone: SKLabelNode?
     
     let leftEdge = 22
     let bottomEdge = -22
@@ -18,7 +20,22 @@ class GameScene: SKScene {
     
     var score = 0 {
         didSet {
-            
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
+    var fireworkCount = 0 {
+        didSet {
+            if fireworkCount == 3 {
+                self.gameTimer?.invalidate()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                    self.showDone = SKLabelNode(fontNamed: "Chalkduster")
+                    self.showDone?.text = "Show is done!"
+                    self.showDone!.position = CGPoint(x: 512, y: 368)
+                    self.showDone!.horizontalAlignmentMode = .center
+                    self.addChild(self.showDone!)
+                }
+            }
         }
     }
     
