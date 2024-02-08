@@ -55,6 +55,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         
         let show = UNNotificationAction(identifier: "show", title: "Tell me more…", options: .foreground)
         let category = UNNotificationCategory(identifier: "alarm", actions: [show], intentIdentifiers: [])
+        let remainder =  UNNotificationAction(identifier: "remind", title: "Remind me later", options: .foreground)
 
         center.setNotificationCategories([category])
     }
@@ -68,14 +69,31 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             
             switch response.actionIdentifier {
             case UNNotificationDefaultActionIdentifier:
-                print("Default identifier")
+                showAlert(title: "Default identifier", message: "Not special")
             case "show":
-                print("Show more information")
+                showAlert(title: "Show more", message: "Notification information: \(customData)")
+            case "remainder":
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 86400, repeats: false)
+                let secondContent = UNMutableNotificationContent()
+                secondContent.title = "Remainder"
+                secondContent.body = response.notification.request.content.body
+                secondContent.categoryIdentifier = response.notification.request.content.categoryIdentifier
+                secondContent.userInfo = response.notification.request.content.userInfo
+                secondContent.sound = UNNotificationSound.default
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: secondContent, trigger: trigger)
+                center.add(request)
             default:
                 break
             }
         }
         completionHandler()
+    }
+    
+    func showAlert(title: String?, message: String?) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        present(ac, animated: true)
     }
 
 }
