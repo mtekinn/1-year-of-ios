@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Project22
+//  Milestone: Projects 19-21
 //
 //  Created by Mehmet Tekin on 8.02.2024.
 //
@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        // test for configuration git
     }
 
 
