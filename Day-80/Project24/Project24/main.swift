@@ -7,5 +7,9 @@
 
 import Foundation
 
-print("Hello, World!")
+let name = "Mehmet"
+
+for letter in name {
+    print("Give me a \(letter)")
+}
 
