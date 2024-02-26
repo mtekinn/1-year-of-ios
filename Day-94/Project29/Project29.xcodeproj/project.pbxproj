@@ -17,6 +17,7 @@
 		E19042312B8B2E8F00954B3E /* hitPlayer.sks in Resources */ = {isa = PBXBuildFile; fileRef = E190422F2B8B2E8E00954B3E /* hitPlayer.sks */; };
 		E19042322B8B2E8F00954B3E /* hitBuilding.sks in Resources */ = {isa = PBXBuildFile; fileRef = E19042302B8B2E8E00954B3E /* hitBuilding.sks */; };
 		E19042342B8B2F4800954B3E /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E19042332B8B2F4800954B3E /* spark.png */; };
+		E1948D562B8C800000112D0B /* BuildingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1948D552B8C800000112D0B /* BuildingNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		E190422F2B8B2E8E00954B3E /* hitPlayer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitPlayer.sks; sourceTree = "<group>"; };
 		E19042302B8B2E8E00954B3E /* hitBuilding.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitBuilding.sks; sourceTree = "<group>"; };
 		E19042332B8B2F4800954B3E /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		E1948D552B8C800000112D0B /* BuildingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				E190421A2B8B2E3600954B3E /* GameScene.sks */,
 				E190421E2B8B2E3600954B3E /* GameScene.swift */,
 				E19042202B8B2E3600954B3E /* GameViewController.swift */,
+				E1948D552B8C800000112D0B /* BuildingNode.swift */,
 				E19042222B8B2E3600954B3E /* Main.storyboard */,
 				E19042252B8B2E3700954B3E /* Assets.xcassets */,
 				E19042272B8B2E3700954B3E /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E190421F2B8B2E3600954B3E /* GameScene.swift in Sources */,
+				E1948D562B8C800000112D0B /* BuildingNode.swift in Sources */,
 				E19042212B8B2E3600954B3E /* GameViewController.swift in Sources */,
 				E19042192B8B2E3600954B3E /* AppDelegate.swift in Sources */,
 			);
