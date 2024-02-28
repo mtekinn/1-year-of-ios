@@ -23,6 +23,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var currentPlayer = 1
     
+    var player1Score = 0
+    var player2Score = 0
+    let maxScoreToWin = 3
+    
     override func didMove(to view: SKView) {
         backgroundColor = UIColor(hue: 0.669, saturation: 0.99, brightness: 0.67, alpha: 1)
         
@@ -70,6 +74,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
+    func playerWon(playerNumber: Int) {
+        if playerNumber == 1 {
+            player1Score += 1
+        } else {
+            player2Score += 1
+        }
+        
+        if player1Score >= maxScoreToWin || player2Score >= maxScoreToWin {
+            endGame()
+        }
+    }
+    
+    func endGame() {
+        print("Game Over")
+    }
     
     func createBuildings() {
         var currentX: CGFloat = -15
